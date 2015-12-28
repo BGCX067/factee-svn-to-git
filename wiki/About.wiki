@@ -1,0 +1,89 @@
+#summary About this project and how to start
+
+= Introduction =
+
+BioNLP-Event Extraction jointly detecting triggers and event structures. The implementation is based on FACTORIE.
+
+More information can be found in the paper http://www.roman-klinger.de/home/publications/klinger11interevent.pdf
+
+Roman Klinger, Sebastian Riedel, and Andrew McCallum. Inter-Event Dependencies support Event Extraction from Biomedical Literature. In Mining Complex Entities from Network and Biomedical Data (MIND), European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML PKDD), 2011.
+
+= How to start =
+
+Before you start, be sure you have a Unix system, Java and Maven 2 installed. This is tested on Mac OS X 10.7, Ubuntu 12.04, and Scientific Linux. With Ubuntu, it does not work when the home folder is encrypted as file names will be too long in the compilation process (a bug in Ubuntu).
+
+In short:
+For the latest version:
+{{{
+svn checkout http://factee.googlecode.com/svn/trunk/ factee
+}}}
+For the initial version,
+{{{
+download factee-20121222.tar.gz 
+tar xzf factee-20121222.tar.gz
+}}}
+Then continue:
+{{{
+cd factee
+download 3rdparty.tar.gz to this folder
+download data.tar.gz to this folder
+tar xzf data.tar.gz
+tar xzf 3rdparty.tar.gz
+mvn compile
+mvn assembly:assembly
+bin/run.sh init/sample.ini
+}}}
+
+In long:
+
+To get the system running, you need to get the source code first. The latest version can be checked out by
+{{{
+svn checkout http://factee.googlecode.com/svn/trunk/ factee
+}}}
+
+If you prefer the initial version (which is most similar to the paper), you could just check out the first version from SVN or
+{{{
+download factee-20121222.tar.gz
+tar xzf factee-20121222.tar.gz
+}}}
+
+Then change to the project folder
+{{{
+cd factee
+}}}
+
+Now you probably want to have all libraries which are needed for compilation. Get them into the folder factee and unpack them:
+{{{
+download 3rdparty.tar.gz from the downloads of this project.
+tar xzf 3rdparty.tar.gz
+}}}
+
+This makes a folder 3rdparty.
+
+To get started easily, get the data in a format which is prepared for this project and unpack it:
+{{{
+download data.tar.gz
+tar xzf data.tar.gz
+}}}
+
+You can remove the tarballs now if you wish:
+{{{
+rm data.tar.gz 3rdparty.tar.gz
+rm factee-20121222.tar.gz
+}}}
+
+Now compile and build a jar file:
+{{{
+mvn compile
+mvn assembly:assembly
+}}}
+
+Now you are ready to run, you may need to adapt some paths in the run.sh file. This is just calling Java without making use of Scala or Maven. Of course you can use the Maven plugin to run the system as well.
+Similarly, you may want to adapt the ini file to your environment, but it should run as is on most systems.
+{{{
+bin/run.sh init/sample.ini
+}}}
+
+= Please note =
+This implementation is based on an old version of Scala and an old version of FACTORIE. This leads to highlighting of syntax errors in editors with the latest versions of Scala, where no errors are actually.
+See http://stackoverflow.com/questions/7753588/scala-too-many-arguments-error-in-intellij-idea-11-using-scala-2-7-7 for additional information on that issue.
